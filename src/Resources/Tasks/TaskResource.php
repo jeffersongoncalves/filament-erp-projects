@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\Tasks;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Projects\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Projects\FilamentErpProjectsPlugin;
@@ -15,7 +17,7 @@ use JeffersonGoncalves\FilamentErp\Projects\Resources\Tasks\Tables\TasksTable;
 
 class TaskResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     protected static ?int $navigationSort = 20;
 
@@ -35,9 +37,9 @@ class TaskResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return TaskForm::configure($form);
+        return TaskForm::configure($schema);
     }
 
     public static function table(Table $table): Table

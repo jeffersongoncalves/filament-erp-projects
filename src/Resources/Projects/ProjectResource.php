@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\Projects;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Projects\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Projects\FilamentErpProjectsPlugin;
@@ -15,7 +17,7 @@ use JeffersonGoncalves\FilamentErp\Projects\Resources\Projects\Tables\ProjectsTa
 
 class ProjectResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?int $navigationSort = 10;
 
@@ -35,9 +37,9 @@ class ProjectResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return ProjectForm::configure($form);
+        return ProjectForm::configure($schema);
     }
 
     public static function table(Table $table): Table

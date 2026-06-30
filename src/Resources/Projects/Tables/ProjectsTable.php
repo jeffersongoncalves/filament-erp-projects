@@ -2,7 +2,7 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\Projects\Tables;
 
-use Filament\Tables\Actions;
+use Filament\Actions;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -56,11 +56,11 @@ class ProjectsTable
                     ->label('Status')
                     ->options(self::statusOptions()),
             ])
-            ->actions([
+            ->recordActions([
                 Actions\EditAction::make(),
                 Actions\DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 Actions\BulkActionGroup::make([
                     Actions\DeleteBulkAction::make(),
                 ]),
