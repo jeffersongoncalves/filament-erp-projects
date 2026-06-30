@@ -1,6 +1,5 @@
 <?php
 
-use Filament\Actions\Testing\TestAction;
 use JeffersonGoncalves\Erp\Accounting\Enums\AccountType;
 use JeffersonGoncalves\Erp\Accounting\Enums\RootType;
 use JeffersonGoncalves\Erp\Accounting\Models\Account;
@@ -65,7 +64,7 @@ it('submits a timesheet through the UI, locking the document', function () {
     $timesheet = makeTimesheet();
 
     Livewire::test(ListTimesheets::class)
-        ->callAction(TestAction::make('submit')->table($timesheet));
+        ->callTableAction('submit', $timesheet);
 
     $timesheet->refresh();
 
@@ -95,12 +94,12 @@ it('creates a sales invoice from a submitted timesheet through the UI', function
     $timesheet->refresh();
 
     Livewire::test(ListTimesheets::class)
-        ->callAction(TestAction::make('submit')->table($timesheet));
+        ->callTableAction('submit', $timesheet);
 
     expect($timesheet->refresh()->docstatus)->toBe(DocStatus::Submitted);
 
     Livewire::test(ListTimesheets::class)
-        ->callAction(TestAction::make('createSalesInvoice')->table($timesheet), data: [
+        ->callTableAction('createSalesInvoice', $timesheet, [
             'debit_to_id' => $receivable->id,
             'income_account_id' => $income->id,
         ]);

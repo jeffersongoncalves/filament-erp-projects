@@ -2,10 +2,8 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\ActivityTypes;
 
-use BackedEnum;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Projects\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Projects\FilamentErpProjectsPlugin;
@@ -17,7 +15,7 @@ use JeffersonGoncalves\FilamentErp\Projects\Resources\ActivityTypes\Tables\Activ
 
 class ActivityTypeResource extends Resource
 {
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     protected static ?int $navigationSort = 1;
 
@@ -37,9 +35,9 @@ class ActivityTypeResource extends Resource
         }
     }
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return ActivityTypeForm::configure($schema);
+        return ActivityTypeForm::configure($form);
     }
 
     public static function table(Table $table): Table
