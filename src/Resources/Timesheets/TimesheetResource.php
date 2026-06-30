@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\Timesheets;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Projects\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Projects\FilamentErpProjectsPlugin;
@@ -16,7 +18,7 @@ use JeffersonGoncalves\FilamentErp\Projects\Resources\Timesheets\Tables\Timeshee
 
 class TimesheetResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
 
     protected static ?int $navigationSort = 30;
 
@@ -36,9 +38,9 @@ class TimesheetResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return TimesheetForm::configure($form);
+        return TimesheetForm::configure($schema);
     }
 
     public static function table(Table $table): Table
