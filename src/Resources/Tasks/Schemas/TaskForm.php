@@ -3,22 +3,22 @@
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\Tasks\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use JeffersonGoncalves\Erp\Projects\Enums\TaskPriority;
 use JeffersonGoncalves\Erp\Projects\Enums\TaskStatus;
 
 class TaskForm
 {
-    public static function configure(Form $form): Form
+    public static function configure(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->columns(null)
-            ->schema([
+            ->components([
                 Section::make('Details')
                     ->schema([
                         TextInput::make('subject')

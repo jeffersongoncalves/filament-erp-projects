@@ -2,18 +2,18 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Resources\ActivityTypes\Schemas;
 
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 
 class ActivityTypeForm
 {
-    public static function configure(Form $form): Form
+    public static function configure(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->columns(null)
-            ->schema([
+            ->components([
                 Section::make('Details')
                     ->schema([
                         TextInput::make('name')
