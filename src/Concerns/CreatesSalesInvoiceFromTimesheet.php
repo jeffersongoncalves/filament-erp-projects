@@ -2,10 +2,9 @@
 
 namespace JeffersonGoncalves\FilamentErp\Projects\Concerns;
 
-use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
-use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Model;
 use JeffersonGoncalves\Erp\Accounting\Enums\AccountType;
 use JeffersonGoncalves\Erp\Accounting\Support\ModelResolver as AccountingModelResolver;
@@ -28,10 +27,10 @@ trait CreatesSalesInvoiceFromTimesheet
     {
         return Action::make('createSalesInvoice')
             ->label('Create Sales Invoice')
-            ->icon(Heroicon::OutlinedDocumentText)
+            ->icon('heroicon-o-document-text')
             ->color('primary')
             ->visible(fn (Model $record): bool => $record->getAttribute('docstatus') === DocStatus::Submitted)
-            ->schema([
+            ->form([
                 Select::make('debit_to_id')
                     ->label('Receivable Account')
                     ->options(self::accountOptions(AccountType::Receivable))
